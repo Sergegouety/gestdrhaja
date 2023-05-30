@@ -66,29 +66,46 @@ class ServiceController extends Controller
     $direction=$request->get('direction');
     $sousdirection=$request->get('sousdirection');
     $designation=$request->get('service');
-    $description=$request->get('description');
+    //$description=$request->get('description');
+
+     DB::beginTransaction();
+        try
+        {
     
     $service = new Service();
 
-    
     $service->direction_id = $direction;
     $service->sousdirection_id = $sousdirection;
     $service->designation = $designation;
-    $service->description = $description;
-    $service->state = 1;
+    //$service->description = $description;
+    //$service->state = 1;
    
     $response = $service->save();
+     }
+        catch (Exception $e)
+         {
+                  DB::rollback();
+                 Session::flash('error',"Une erreur s'est produite ".$e->getMessage().", Réessayer svp");
+                 return Redirect::back();
+         }   
+                 DB::commit();
+                return Redirect::back()->with('success',"Service ajoutée avec succès");
 
-    if($response)
-    {
-       return Redirect::back()->with('success',"Service ajouté avec succès");
-    }
-    else
-    {
-      return Redirect::back()->with('error',"Une erreur s'est produite, réessayer svp");
-    }
     
   }
+
+  public function getServiceById($instance){
+
+                   $instanceVal = Sousdirection::where(['id'=>$instance])->first();
+
+                   //dd($instance,$typeid,$instanceVal);
+                    $obj = new \stdClass;
+                    $obj->id = $instanceVal->id;
+                    $obj->direction = $instanceVal->direction_id;
+                    $obj->designation = $instanceVal->designation;
+                   
+                    return response()->json($obj);
+                 }
 
   /**
    * Display the specified resource.
@@ -107,8 +124,39 @@ class ServiceController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function edit($id)
+  public function edit(Request $request)
   {
+
+    //dd($request);
+    $direction=$request->get('direction');
+    $sousdirection=$request->get('sousdirection');
+    $service=$request->get('service');
+    $service_id=$request->get('service_id');
+
+     DB::beginTransaction();
+        try
+        {
+
+           $affected = DB::table('service')
+              ->where('id', $service_id)
+              ->update([
+                      'direction_id' => $direction,
+                      'sousdirection_id' => $sousdirection,
+                      'designation' => $service
+                      ]);
+    
+    
+         }
+            catch (Exception $e)
+             {
+                      DB::rollback();
+                     Session::flash('error',"Une erreur s'est produite ".$e->getMessage().", Réessayer svp");
+                     return Redirect::back();
+             }   
+                     DB::commit();
+                    return Redirect::back()->with('success',"Service modifié avec succès");
+
+   
     
   }
 

@@ -39,29 +39,32 @@ class SousdirectionController extends Controller
   {
      //dd($request);
     $direction=$request->get('direction');
-    $niveau=$request->get('niveau');
+    $is_agence=$request->get('is_agence');
     $designation=$request->get('sousdirection');
-    $description=$request->get('description');
-    
-    $sousdirection = new Sousdirection();
 
-    
-    $sousdirection->direction_id = $direction;
-    $sousdirection->grade_sd_id  = $niveau;
-    $sousdirection->designation = $designation;
-    $sousdirection->description = $description;
-    $sousdirection->state = 1;
-   
-    $response = $sousdirection->save();
+    if($is_agence == 'on'){$state = 2;}else{$state = null;}
 
-    if($response)
-    {
-       return Redirect::back()->with('success',"Sous Direction ajouté avec succès");
-    }
-    else
-    {
-      return Redirect::back()->with('error',"Une erreur s'est produite, réessayer svp");
-    }
+     DB::beginTransaction();
+        try
+        {
+    
+        $sousdirection = new Sousdirection();
+
+        $sousdirection->direction_id = $direction;
+        $sousdirection->designation = $designation;
+        $sousdirection->state = $state;
+       
+        $response = $sousdirection->save();
+
+        }
+            catch (Exception $e)
+             {
+                      DB::rollback();
+                     Session::flash('error',"Une erreur s'est produite ".$e->getMessage().", Réessayer svp");
+                     return Redirect::back();
+             }   
+                     DB::commit();
+                    return Redirect::back()->with('success',"Sous Direction ajouté avec succès");
     
   }
 

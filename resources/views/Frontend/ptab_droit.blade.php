@@ -10,8 +10,8 @@ $active="active";
 $open="open";
 $show="show";
 $d="#";
-$page="parametre";
-$sm="agent";
+$page="evaluation";
+$sm="agent_droit";
 
 $nom=Session::get('nom');
 @endphp

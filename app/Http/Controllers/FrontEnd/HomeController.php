@@ -294,9 +294,9 @@ class HomeController extends Controller
 
    public function indexService()
   {
-     $directions=Direction::All();
-     $sousdirections=SousDirection::All();
-     $grade_sd=Grade_sd::All();
+      $directions=Direction::All();
+      $sousdirections=SousDirection::All();
+      $grade_sd=Grade_sd::All();
       $services=Service::All();
       return view('Frontend.service')->with([
         'directions'=>$directions,
@@ -305,6 +305,7 @@ class HomeController extends Controller
         'services'=>$services,
     ]);
   }
+
 
    public function indexAgent(Request $request,UserRepository $userRepository)
   {

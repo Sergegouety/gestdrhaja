@@ -29,6 +29,11 @@ Route::get('/direction', 'DirectionController@indexDirection')->name('super.dire
 Route::get('/service', 'FrontEnd\HomeController@indexService')->name('super.service');
 Route::get('/sdirection', 'FrontEnd\HomeController@indexSousdirection')->name('super.sousdirection');
 
+Route::post('/add/service', 'ServiceController@store')->name('add.service');
+Route::post('/edit/service', 'ServiceController@edit')->name('edit.service');
+Route::post('/add/sousdirection', 'Sousdirection@store')->name('add.sousdirection');
+Route::post('/edit/sousdirection', 'Sousdirection@edit')->name('edit.sousdirection');
+
 Route::get('/agent', 'FrontEnd\HomeController@indexAgent')->name('super.agent');
 Route::get('/nouvel/agent', 'UserController@create_form_agent')->name('nouveau.agent');
 Route::post('/agent', 'UserController@store_agent')->name('add.agent');
@@ -70,7 +75,7 @@ Route::get('/demande/update/state/{did}/{opt}', 'DemandeController@updateDemande
 // Route::get('/fabricant', 'FrontEnd\HomeController@indexFabricant')->name('super.fabricant');
 // Route::get('/attribution', 'FrontEnd\HomeController@indexAttribution')->name('super.attribution');
 
-Route::post('/service', 'ServiceController@store')->name('add.service');
+
 Route::post('/materiel', 'MaterielController@storeMateriel')->name('add.materiel');
 Route::post('/produit', 'MaterielController@storeProduit')->name('add.produit');
 Route::post('/stock', 'StockController@store')->name('add.stock');
@@ -179,5 +184,8 @@ Route::get('ajax/activiteIntituleIndicateur/show/{id}', 'PtabController@showacti
 Route::get('ajax/tache/show/{id}', 'PtabController@showTacheByActiviteType')->name('tache.show');
 Route::get('ajax/tacheIntituleIndicateur/show/{id}', 'PtabController@showtacheIntituleIndicateur')->name('tacheIntituleIndicateur.show');
 Route::get('ajax/action/archive/{instance}/{type_id}/{state}', 'PtabController@showInstanceAchive')->name('tacheIntituleIndicateur.show');
+
+Route::get('ajax/getServiceById/{id}', 'ServiceController@getServiceById')->name('service.byId');
+Route::get('ajax/getSdById/{id}', 'ServiceController@getServiceById')->name('sd.byId');
 
 });

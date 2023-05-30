@@ -122,7 +122,7 @@
               <li class="@if($sm=='reglage') {{$active}} @endif"><a href="{{ route('reglage.ptab') }}">Période</a></li>
                <li class="@if($sm=='bouton') {{$active}} @endif"><a href="{{ route('reglage.bouton') }}">Bouton</a></li>
               @if(Session::get('function_key')->isptabadmin || ptab_gestion_rigth(Auth::user()->id))
-              <li class="@if($sm=='droit') {{$active}} @endif"><a href="{{ route('reglage.droit') }}">Droit</a></li>
+              <li class="@if($sm=='agent_droit'){{$active}}@endif"><a href="{{ route('reglage.droit') }}">Droit</a></li>
               @endif
             </ul>
             @endif

@@ -339,13 +339,13 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                 </div>
                       </td>
                        <td >
-          <?php if($action->state == -2){ echo '<span class="badge bg-important">DESACTIVEE</span>';} ?> 
-          <?php if($action->state == -1){ echo '<span class="badge bg-warning">Désactivation en attente</span>';} ?> 
-          <?php if($action->state == -3){ echo '<span class="badge bg-warning">Retrait en attente</span>';} ?>
-          <?php if($action->state == -4){ echo '<span class="badge bg-important">RETIREE</span>';} ?> 
-           <?php if($action->state == 1){ echo '<span class="badge bg-important">NON REALISEE</span>';} ?> 
-          <?php if($action->state == 2){ echo '<span class="badge bg-warning">PART. REALISEE</span>';} ?> 
-          <?php if($action->state == 3){ echo '<span class="badge bg-success">REALISEE</span>';} ?> 
+                        <?php if($action->state == -2){ echo '<span class="badge bg-important">DESACTIVEE</span>';} ?> 
+                        <?php if($action->state == -1){ echo '<span class="badge bg-warning">Désactivation en attente</span>';} ?> 
+                        <?php if($action->state == -3){ echo '<span class="badge bg-warning">Retrait en attente</span>';} ?>
+                        <?php if($action->state == -4){ echo '<span class="badge bg-important">RETIREE</span>';} ?> 
+                         <?php if($action->state == 1){ echo '<span class="badge bg-important">NON REALISEE</span>';} ?> 
+                        <?php if($action->state == 2){ echo '<span class="badge bg-warning">PART. REALISEE</span>';} ?> 
+                        <?php if($action->state == 3){ echo '<span class="badge bg-success">REALISEE</span>';} ?> 
                       </td>
                     </tr>
                     @php $i++; @endphp
