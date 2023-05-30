@@ -50,7 +50,7 @@
               </li>
               <li class="@if($sm=='sousdirection') {{$active}} @endif"><a href="{{ route('super.sousdirection') }}">Sous-Directions</a></li>
               <li class="@if($sm=='service') {{$active}} @endif"><a href="{{ route('super.service') }}">Services</a></li>
-              <li class="@if($sm=='agent') {{$active}} @endif"><a href="{{ route('super.agent') }}">Agents</a></li>
+              <!-- <li class="@if($sm=='agent') {{$active}} @endif"><a href="{{ route('super.agent') }}">Agents</a></li> -->
             </ul>
           </li>
           @endif
