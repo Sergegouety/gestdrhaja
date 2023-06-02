@@ -17,7 +17,7 @@
 //$agent_function = Session::get('function_key');
 
 Auth::routes();
-Route::get('/home', 'Auth/AuthController@home')->name('home');
+Route::get('/home', 'Auth\AuthController@home')->name('home');
 Route::get('/', 'Auth\AuthController@index')->name('showLog');
 Route::get('/connexion', 'Auth\AuthController@showForm')->name('login');
 Route::post('/cnx', 'Auth\AuthController@doLogin')->name('doLog');
