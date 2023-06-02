@@ -11,6 +11,12 @@ app/storage/
 public/storage
 public/hot
 
+.DS_Store
+bootstrap/.DS_Store
+database/.DS_Store
+storage/.DS_Store
+tests/.DS_Store
+
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage
 public_html/hot
