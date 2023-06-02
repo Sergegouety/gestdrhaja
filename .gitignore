@@ -21,6 +21,8 @@ tests/.DS_Store
 public_html/storage
 public_html/hot
 
+*.DS_Store
+
 storage/*.key
 .env
 Homestead.yaml
