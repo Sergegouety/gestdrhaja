@@ -10,16 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Mews\Captcha\Captcha;
-
-
 use Carbon\Carbon;
-use App\Models\User;
-use Illuminate\Support\Facades\Config;
-use PDF;
-use DB;
-
-use App\Repositories\StudentRepository;
-use App\Models\Classe;
 
 class AuthController extends Controller
 {
@@ -27,12 +18,12 @@ class AuthController extends Controller
 
   public function index()
     {
-          return view('Frontend.login');  
+          return view('Frontend.login');
     }
 
     public function home()
     {
-      
+
          if(Auth::user()->state==1)
                                    {
                                     $agent=getAgentFunctionById(Auth::id());
@@ -46,14 +37,14 @@ class AuthController extends Controller
                                        //return redirect()->route('agent.profil',Auth::id());
                                        return redirect()->route('view.comdash');
                                     }
-       
+
     }
 
     public function showForm()
     {
-      
+
           return view('Frontend.login');
-       
+
     }
 
 
@@ -62,7 +53,7 @@ class AuthController extends Controller
 
 
         if (Auth::check()){
-            
+
             return redirect()->route('admin.dashboard');
         }
         else{
@@ -71,13 +62,13 @@ class AuthController extends Controller
     }
 
     public function doLocked()
-    {       
+    {
         if(Auth::user()){
             Session::put('_email', Auth::user()->email);
             Session::put('_firstname', Auth::user()->firstname);
             Session::put('_lastname', Auth::user()->lastname);
             Session::put('_avatar', Auth::user()->avatar);
-           
+
             Session::forget('lastActivityTime');
             Session::flash('warning', 'Votre session a bien été vérouillé');
             Auth::logout();
@@ -94,7 +85,7 @@ class AuthController extends Controller
 
         $captchaValue = $captcha->check($request->captcha);
         //dd($captchaValue);
-        
+
     	$rules = array(
 	        'email'	=> 'required',
 	        'password'	=> 'required',
@@ -111,8 +102,8 @@ class AuthController extends Controller
                 if ($validator->fails()) {
 
                     return Redirect::back()->withErrors($validator);
-                } 
-                else 
+                }
+                else
                 {
                    //dd($req);
                     $userdata = array(
@@ -138,7 +129,7 @@ class AuthController extends Controller
                                            //return redirect()->route('agent.profil',Auth::id());
                                            return redirect()->route('view.comdash');
                                         }
-                    
+
                      }else{
                           Session::flash('error','Email ou mot de passe incorrect');
                           return Redirect::back();
@@ -152,10 +143,10 @@ class AuthController extends Controller
             return Redirect::back();
 
         }
-        
+
     }
-    	
-    
+
+
 
     public function doLoginFromLocked(Request $req)
     {
@@ -172,8 +163,8 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return redirect()->route('adminLocked')
                 ->withErrors($validator);
-        } 
-        else 
+        }
+        else
         {
             $userdata = array(
                 'email'     => Session::get('_email'),
@@ -181,14 +172,14 @@ class AuthController extends Controller
             );
 
             if (Auth::attempt($userdata)) {
-                return redirect()->intended();  
+                return redirect()->intended();
             }
             else{
                 Session::flash('error','Mot de passe incorrect');
                 return redirect()->back();
             }
         }
-        
+
     }
 
 
@@ -220,8 +211,8 @@ class AuthController extends Controller
             return Redirect::to('verif.show')
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
-        } 
-        else 
+        }
+        else
         {
            $userdata = array(
                 'numero'    => Input::get('number'),
@@ -251,12 +242,12 @@ class AuthController extends Controller
                 return Redirect::back()->withInput(Input::except('password'));
             }
         }
-        
+
     }
 
     public function doLogout()
 	{
-	   Auth::logout(); 
+	   Auth::logout();
        Session::flush();
        Session::flash('success','Vous avez bien été déconnecté !');
 
