@@ -41,6 +41,26 @@
     </div>
       <form autocomplete="off" class="form-login" method="POST" action="{{ route('new.password') }}">
          {{ csrf_field() }}
+
+         @if (session('success'))
+             <div class="form-group ">
+              <div class="col-xs-12">
+                <div class="alert alert-success">
+                       {{ session('success') }}
+                </div>
+              </div>
+            </div>
+        @endif
+         @if (session('error'))
+             <div class="form-group ">
+              <div class="col-xs-12">
+                <div class="alert alert-danger">
+                       {{ session('error') }}
+                </div>
+              </div>
+            </div>
+        @endif
+        
         <h2 class="form-login-heading">Réinitialiser votre mot de passe</h2>
 
         <input type="hidden" name="user_id" value="{{ $agent->id }}">

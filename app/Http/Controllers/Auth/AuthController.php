@@ -300,4 +300,15 @@ class AuthController extends Controller
             return Redirect::back();
        }
 	}
+
+    public function updatefirst($email)
+	{
+
+        $affected = DB::table('users')
+                                        ->where('email', $email)
+                                        ->update([
+                                                  'first_connexion' => 1
+                                                ]);
+
+	}
 }

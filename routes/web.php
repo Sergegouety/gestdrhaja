@@ -24,6 +24,7 @@ Route::post('/cnx', 'Auth\AuthController@doLogin')->name('doLog');
 Route::get('/logout', 'Auth\AuthController@doLogout')->name('Logout');
 Route::get('/first/connexion', 'Auth\AuthController@firstConnexion')->name('first.connexion');
 Route::post('/first/connexion', 'Auth\AuthController@newpassword')->name('new.password');
+Route::get('ajax/update/first/{email?}', 'Auth\AuthController@updatefirst')->name('update.first');
 
 Route::middleware('auth')->group(function() {
 Route::get('/dashboard', 'FrontEnd\HomeController@indexSuper')->name('super.dashboard');

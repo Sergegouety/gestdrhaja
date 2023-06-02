@@ -94,7 +94,7 @@
         </span>
 
           <hr>
-          <button type="submit" class="btn" style="background-color: #f8941e; color: white" disabled id="btn_submit">
+          <button type="submit" class="btn" style="background-color: #f8941e; color: white" disabled id="btn_submit" onclick="updatefirst()">
             {{ __('Réinitialiser votre mot de passe') }}
         </button>
           <hr>
@@ -148,6 +148,13 @@ function activeSubmit() {
 
                         if(password_confirmation == password_new){$('#btn_submit').removeAttr('disabled'); $('#pwdrepeat').css("display","none");}
 
+                       }
+
+function updatefirst() {
+
+                        var email = $('#email').val();
+                        var url = "{{ url('ajax/update/first') }}/"+email;
+                            $.ajax({type: "get",url: url,success: function(){}});
                        }
 
 
