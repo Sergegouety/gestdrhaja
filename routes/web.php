@@ -22,6 +22,8 @@ Route::get('/', 'Auth\AuthController@index')->name('showLog');
 Route::get('/connexion', 'Auth\AuthController@showForm')->name('login');
 Route::post('/cnx', 'Auth\AuthController@doLogin')->name('doLog');
 Route::get('/logout', 'Auth\AuthController@doLogout')->name('Logout');
+Route::get('/first/connexion', 'Auth\AuthController@firstConnexion')->name('first.connexion');
+Route::post('/first/connexion', 'Auth\AuthController@newpassword')->name('new.password');
 
 Route::middleware('auth')->group(function() {
 Route::get('/dashboard', 'FrontEnd\HomeController@indexSuper')->name('super.dashboard');

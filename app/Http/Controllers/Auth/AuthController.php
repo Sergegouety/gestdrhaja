@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Mews\Captcha\Captcha;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use DB;
 
 class AuthController extends Controller
 {
@@ -19,6 +21,13 @@ class AuthController extends Controller
   public function index()
     {
           return view('Frontend.login');
+    }
+
+    public function firstConnexion()
+    {
+          $agent=getAgentFunctionById(Auth::id());
+         // dd($agent);
+          return view('Frontend.login_first')->with('agent',$agent);
     }
 
     public function home()
@@ -100,7 +109,6 @@ class AuthController extends Controller
 
                 $validator = Validator::make($data, $rules, $messages);
                 if ($validator->fails()) {
-
                     return Redirect::back()->withErrors($validator);
                 }
                 else
@@ -116,19 +124,25 @@ class AuthController extends Controller
 
                             $dt = Carbon::today();
                             //dd(Auth::user()->state);
-                                      if(Auth::user()->state==1)
-                                       {
-                                        $agent=getAgentFunctionById(Auth::id());
-                                        Session::put('function_key', $agent);
-                                        return redirect()->route('super.dashboard');
+                            $firstConnexion =Auth::user()->first_connexion;
+                            //dd($firstConnexion);
+                            if($firstConnexion){
+                                if(Auth::user()->state==1)
+                                {
+                                 $agent=getAgentFunctionById(Auth::id());
+                                 Session::put('function_key', $agent);
+                                 return redirect()->route('super.dashboard');
 
-                                        } else {
-                                          # 2 pour les utilisateur simple
-                                            $agent=getAgentFunctionById(Auth::id());
-                                            Session::put('function_key', $agent);
-                                           //return redirect()->route('agent.profil',Auth::id());
-                                           return redirect()->route('view.comdash');
-                                        }
+                                 } else {
+                                   # 2 pour les utilisateur simple
+                                     $agent=getAgentFunctionById(Auth::id());
+                                     Session::put('function_key', $agent);
+                                    //return redirect()->route('agent.profil',Auth::id());
+                                    return redirect()->route('view.comdash');
+                                 }
+                             }else{
+                                return redirect()->route('first.connexion');
+                             }
 
                      }else{
                           Session::flash('error','Email ou mot de passe incorrect');
@@ -136,8 +150,7 @@ class AuthController extends Controller
                         }
                 }
 
-        }
-        else{
+        }else{
 
             Session::flash('error','Valeur du captcha incorrect');
             return Redirect::back();
@@ -145,8 +158,6 @@ class AuthController extends Controller
         }
 
     }
-
-
 
     public function doLoginFromLocked(Request $req)
     {
@@ -252,5 +263,41 @@ class AuthController extends Controller
        Session::flash('success','Vous avez bien été déconnecté !');
 
         return redirect()->route('showLog');
+	}
+
+    public function newpassword(Request $request)
+	{
+       //dd($request,$request->password,$request->password_confirmation);
+       $password = $request->password;
+       $password_confirmation = $request->password_confirmation ;
+       $user_id = $request->user_id;
+       if($password == $password_confirmation){
+
+         $password = Hash::make($password);
+         $affected = DB::table('users')
+                                        ->where('id', $user_id)
+                                        ->update(['password' => $password,
+                                                  'first_connexion' => 1,
+                                                ]);
+
+                                                if(Auth::user()->state==1)
+                                                {
+                                                 $agent=getAgentFunctionById(Auth::id());
+                                                 Session::put('function_key', $agent);
+                                                 return redirect()->route('super.dashboard');
+
+                                                 } else {
+                                                   # 2 pour les utilisateur simple
+                                                     $agent=getAgentFunctionById(Auth::id());
+                                                     Session::put('function_key', $agent);
+                                                    //return redirect()->route('agent.profil',Auth::id());
+                                                    return redirect()->route('view.comdash');
+                                                 }
+
+
+       }else{
+        Session::flash('error','Les mots de passe ne sont pas identiques');
+            return Redirect::back();
+       }
 	}
 }
