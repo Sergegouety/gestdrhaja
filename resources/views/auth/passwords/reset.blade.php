@@ -59,24 +59,24 @@
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Nouveau mot de passe" onkeyup="validatePassword(this.value)">
                 <br/>
                 <span style="display: block; color:red" id="non_majuscule">
-                        <input type="checkbox" ><label>Au moins une lettre Majuscule</label>
+                        <input type="checkbox" style="margin: 10px" ><label>Au moins une lettre Majuscule</label>
                 </span>
                 <span style="display: none; color:green" id="majuscule">
-                        <input type="checkbox"  checked><label>Au moins une lettre Majuscule</label>
+                        <input type="checkbox" checked style="margin: 10px" ><label>Au moins une lettre Majuscule</label>
                 </span>
                 <br/>
                 <span style="display: block; color:red" id="non_chiffre">
-                        <input type="checkbox"><label>Au moins 1 chiffre</label>
+                        <input type="checkbox" style="margin: 10px" ><label>Au moins 1 chiffre</label>
                 </span>
                 <span style="display: none; color:green" id="chiffre">
-                        <input type="checkbox"  checked><label>Au moins 1 chiffre</label>
+                        <input type="checkbox" checked style="margin: 10px" ><label>Au moins 1 chiffre</label>
                 </span>
                 <br/>
                 <span style="display: block; color:red" id="non_longueur">
-                        <input type="checkbox"><label>Au moins 8 carractères</label>
+                        <input type="checkbox" style="margin: 10px" ><label>Au moins 8 carractères</label>
                 </span>
                 <span style="display: none; color:green" id="longueur">
-                        <input type="checkbox"  checked><label>Au moins 8 carractères</label>
+                        <input type="checkbox" checked style="margin: 10px" ><label>Au moins 8 carractères</label>
                 </span>
 
 
@@ -145,8 +145,7 @@ function activeSubmit() {
 //alert('test');
                         var password_confirmation = $('#password-confirm').val();
                         var password_new = $('#password').val();
-
-                        if(password_confirmation == password_new){$('#btn_submit').removeAttr('disabled'); $('#pwdrepeat').css("display","none");}
+                        if(password_confirmation == password_new){$('#btn_submit').removeAttr('disabled'); $('#pwdrepeat').css("display","none");}else{$('#pwdrepeat').css("display","block");$('#btn_submit').attr('disabled','true');}
 
                        }
 

@@ -37,19 +37,19 @@ $jourutilise=getjourdeconge($agent->id,'CONGE');
           }
 
 if($anciennete >= 5 && $anciennete < 10){
-           
+
              $total=$total + 1;
           }elseif($anciennete >= 10 && $anciennete < 15){
-           
+
             $total=$total + 2;
           }elseif($anciennete >= 15 && $anciennete < 20){
-            
+
             $total=$total + 3;
           }elseif($anciennete >= 20 && $anciennete < 25){
-           
+
             $total=$total + 5;
           }elseif($anciennete >= 25 && $anciennete < 30){
-            
+
             $total=$total + 7;
           }elseif($anciennete > 30 ){
             $total=$total + 8;
@@ -87,7 +87,7 @@ $nbrejourrestant=$total - $jourutilise;
   <link href="{{asset('css/style-responsive.css')}}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="{{asset('lib/bootstrap-fileupload/bootstrap-fileupload.css')}}" />
-   
+
 
   <!-- =======================================================
     Template Name: Dashio
@@ -110,7 +110,7 @@ $nbrejourrestant=$total - $jourutilise;
       <!--logo start-->
       <a href="{{ route('super.dashboard') }}" class="logo"><b>DRH<span>AJA</span></b></a>
       <!--logo end-->
-      
+
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li><a class="logout" href="{{ route('Logout') }}">Deconnexion</a></li>
@@ -178,9 +178,9 @@ $nbrejourrestant=$total - $jourutilise;
                 <h6>
                   @if($agent->direction_id )
                   {{getInstanceName('direction','id',$agent->direction_id,'designation')}}
-                  @endif 
+                  @endif
                   /  @if($agent->sousdirection_id)
-                  {{getInstanceName('sousdirection','id',$agent->sousdirection_id,'designation')}} 
+                  {{getInstanceName('sousdirection','id',$agent->sousdirection_id,'designation')}}
                   @endif
                   /  @if($agent->service_id)
                   {{getInstanceName('service','id',$agent->service_id,'designation')}}
@@ -230,12 +230,12 @@ $nbrejourrestant=$total - $jourutilise;
             <!-- /row -->
           </div>
           <!-- /col-lg-12 -->
-         
+
           <div class="col-lg-12 mt">
             <div class="row content-panel">
               <div class="panel-heading">
                 <ul class="nav nav-tabs nav-justified">
-                 
+
                   <li class="active">
                     <a data-toggle="tab" href="#profil" class="">Profil</a>
                   </li>
@@ -252,7 +252,7 @@ $nbrejourrestant=$total - $jourutilise;
                     <a data-toggle="tab" href="#overview">Documents</a>
                   </li>
                   <li>
-                    <a data-toggle="tab" href="#motdepasse" class="contact-map">Mot de passe</a>
+                    <a data-toggle="tab" href="#motdepasse_tab" class="contact-map">Mot de passe</a>
                   </li>
                  <!--  <li>
                     <a data-toggle="tab" href="#edit">Modifier Profile</a>
@@ -296,7 +296,7 @@ $nbrejourrestant=$total - $jourutilise;
                       <h4>Documents de santé</h4>
 
                       <table class="table table-striped table-advance table-hover">
-            
+
                         <thead>
                           <tr>
                             <th>Designation</th>
@@ -325,7 +325,7 @@ $nbrejourrestant=$total - $jourutilise;
                       <h4>Documents des Sanctions disciplinaires</h4>
 
               <table class="table table-striped table-advance table-hover">
-    
+
                 <thead>
                   <tr>
                     <th>Designation</th>
@@ -355,7 +355,7 @@ $nbrejourrestant=$total - $jourutilise;
                       <h4>Autres Documents</h4>
 
               <table class="table table-striped table-advance table-hover">
-    
+
                 <thead>
                   <tr>
                     <th>Designation</th>
@@ -379,7 +379,7 @@ $nbrejourrestant=$total - $jourutilise;
                           @endforeach
                 </tbody>
               </table>
-                       
+
                 </div>
                       <!-- /col-md-6 -->
                       <div class="col-md-6 detailed">
@@ -414,7 +414,7 @@ $nbrejourrestant=$total - $jourutilise;
                    <h4>Documents de formation</h4>
 
                       <table class="table table-striped table-advance table-hover">
-            
+
                         <thead>
                           <tr>
                             <th>Designation</th>
@@ -444,7 +444,7 @@ $nbrejourrestant=$total - $jourutilise;
                       <h4>Documents de banque</h4>
 
                       <table class="table table-striped table-advance table-hover">
-            
+
                         <thead>
                           <tr>
                             <th>Designation</th>
@@ -474,7 +474,7 @@ $nbrejourrestant=$total - $jourutilise;
                       <h4>Fiche de poste</h4>
 
                       <table class="table table-striped table-advance table-hover">
-            
+
                         <thead>
                           <tr>
                             <th>Designation</th>
@@ -498,7 +498,7 @@ $nbrejourrestant=$total - $jourutilise;
                             @endforeach
                         </tbody>
                       </table>
-                  
+
                       </div>
                       <!-- /col-md-6 -->
                     </div>
@@ -531,7 +531,7 @@ $nbrejourrestant=$total - $jourutilise;
                 </div>
 <br>
                 <div class="form-group">
-                 
+
                   <label class="col-sm-2 control-label">Date de naissance <span style="color:red">*</span>:</label>
                   <div class="col-sm-2">
                     <input type="date" class="form-control" id="naissance" name="naissance" value="{{format_date2($agent->datenaissance)}}" <?php if(Auth::user()->state==1 || $direction_ ==4){ echo ''; }else{echo 'disabled';} ?>/>
@@ -551,11 +551,11 @@ $nbrejourrestant=$total - $jourutilise;
                             <option value="DIVORCE.E" <?php if($agent->situationmatrimoniale=='DIVORCE.E'){ echo 'selected'; } ?> >Divorcé.e</option>
                       </select>
                   </div>
-                 
+
                 </div>
 <br>
                 <div class="form-group">
-                 
+
                   <label class="col-sm-2 col-sm-2 control-label">Lieu de residence:</label>
                   <div class="col-sm-2">
                     <input type="text" class="form-control" id="residence" name="residence" value="{{$agent->lieuresidence}}"/>
@@ -569,11 +569,11 @@ $nbrejourrestant=$total - $jourutilise;
                   <div class="col-sm-2">
                     <input type="text" class="form-control" id="tel2" name="tel2" value="{{$agent->telephone2}}" />
                   </div>
-                 
+
                 </div>
 <br>
                 <div class="form-group">
-                 
+
                   <label class="col-sm-2 col-sm-2 control-label">Groupe sanguin :</label>
                   <div class="col-sm-2">
                     <select class="form-control" name="groupe_sanguin">
@@ -605,7 +605,7 @@ $nbrejourrestant=$total - $jourutilise;
                   <div class="col-sm-2" id="divautrereligion" style="display:block">
                     <input type="text" class="form-control" id="autre_religion" name="autre_religion" value="{{$agent->autre_religion}}" />
                   </div>
-                 
+
                 </div>
 <br>
                 <div class="form-group">
@@ -628,7 +628,7 @@ $nbrejourrestant=$total - $jourutilise;
                 </div>
 <br>
                 <div class="form-group">
-                
+
 
                    <label class="col-sm-2 col-sm-2 control-label"> Email <span style="color:red">*</span>:</label>
                   <div class="col-sm-4">
@@ -817,10 +817,10 @@ $nbrejourrestant=$total - $jourutilise;
 
 
                       </div>
-                      
+
                     </div>
-                    
-                  </div> 
+
+                  </div>
 <!-- /Profil -->
 
 <!-- /Conges -->
@@ -833,18 +833,18 @@ $nbrejourrestant=$total - $jourutilise;
                         $jourutilise=getjourdeconge($agent->id,'CONGE');
 
                         @endphp
- 
-                      <h4 style="color: orange;">Jours de congé restant: 
-                        <input id="nbrejourrestant" style="border:none" value="{{$nbrejourrestant}}"> 
+
+                      <h4 style="color: orange;">Jours de congé restant:
+                        <input id="nbrejourrestant" style="border:none" value="{{$nbrejourrestant}}">
                       </h4>
  <br>
                         <table class="table table-striped table-advance table-hover">
-              
+
                           <thead class="sticky-nav text-green-m1 text-uppercase text-85">
                     <tr>
 
                       <th class="td-toggle-details border-0 bgc-white shadow-sm">
-                       
+
                       </th>
 
                       <th class="border-0 bgc-white bgc-h-orange-l3 shadow-sm">
@@ -887,7 +887,7 @@ $nbrejourrestant=$total - $jourutilise;
                     <tr class="d-style bgc-h-orange-l4">
 
                       <td class="pl-3 pl-md-4 align-middle pos-rel">
-                        
+
                       </td>
 
                       <td class="text-grey">
@@ -906,7 +906,7 @@ $nbrejourrestant=$total - $jourutilise;
                         <span class="text-105">
                          {{ $demande->date_demande }}
                         </span>
-                       
+
                       </td>
 
                        <td>
@@ -919,14 +919,14 @@ $nbrejourrestant=$total - $jourutilise;
                         <span class="text-105">
                          {{ $demande->date_retour }}
                         </span>
-                       
+
                       </td>
 
                       <td>
                         <span class="text-105">
                           {{ $demande->duree }}
                         </span>
-                       
+
                       </td>
 
                        <td>
@@ -969,28 +969,28 @@ $nbrejourrestant=$total - $jourutilise;
                           <i class="fa fa-caret-down"></i>
                         </button>
                            @endif
-                       
+
                       </div>
 
                         <div class="text-95 text-secondary-d1">
-                         
+
                         </div>
                       </td>
 
                     </tr>
 
                     @endforeach
-                    
+
                   </tbody>
                         </table>
-                        
+
 
 
                       </div>
-                      
+
                     </div>
-                    
-                  </div> 
+
+                  </div>
 <!-- /Profil -->
                   <div id="contact" class="tab-pane">
                     <div class="row">
@@ -999,7 +999,7 @@ $nbrejourrestant=$total - $jourutilise;
                         <br>
 
                             <table class="table table-striped table-advance table-hover">
-                
+
                             <thead>
                               <tr>
                                 <th>Nom & Prénom</th>
@@ -1036,27 +1036,27 @@ $nbrejourrestant=$total - $jourutilise;
                                     @endif
                                      @if($filiation->fichier_acte_naissance)
                                     <li><a href="{{ asset('docs/'.$filiation->fichier_acte_naissance) }}" target="_blank">Acte de naissance</a></li>@endif
-                                    
+
                                   </ul>
                                 </div>
                                 <!--  @if($filiation->type_piece)
                                 {{getInstanceName('master_identity','id',$filiation->type_piece,'identity')}}
                                 @endif -->
                               </td>
-                              
+
                               </tr>
                               @endforeach
                             </tbody>
                           </table>
-                        
+
                       </div>
-                     
+
                     </div>
                     <!-- /row -->
                   </div>
                   <!-- contact -->
 
-                  
+
                   <!-- /Parcours -->
                   <div id="parcours" class="tab-pane">
                     <div class="row">
@@ -1085,14 +1085,14 @@ $nbrejourrestant=$total - $jourutilise;
                               <p>
                                 @if($fonction->direction_id )
                                 {{getInstanceName('direction','id',$fonction->direction_id,'designation')}}
-                                @endif 
+                                @endif
                                  @if($fonction->sousdirection_id)
-                                 / {{getInstanceName('sousdirection','id',$fonction->sousdirection_id,'designation')}} 
+                                 / {{getInstanceName('sousdirection','id',$fonction->sousdirection_id,'designation')}}
                                 @endif
                                @if($fonction->service_id)
                               /  {{getInstanceName('service','id',$fonction->service_id,'designation')}}
                               @endif
-                                
+
                               </p>
                             </div>
                             @php
@@ -1102,15 +1102,15 @@ $nbrejourrestant=$total - $jourutilise;
                           </div>
                           <!-- /recent-activity -->
                         </div>
-                        
+
                       </div>
-                     
+
                     </div>
                     <!-- /row -->
                   </div>
                   <!-- Parcours -->
                   <!-- /Mot de passe -->
-                  <div id="motdepasse" class="tab-pane">
+                  <div id="motdepasse_tab" class="tab-pane">
                     <div class="row">
                       <div class="col-md-12 detailed">
                         <h4>Changer Mot de passe</h4>
@@ -1119,27 +1119,70 @@ $nbrejourrestant=$total - $jourutilise;
                         <br>
                       <form class="form-horizontal m-t-10 p-20 p-b-0" method="post" action="{{ route('update.motdepasse') }}">
                              {{ csrf_field() }}
-                    
+
+                             @if (session('success'))
+                             <div class="form-group ">
+                              <div class="col-xs-12">
+                                <div class="alert alert-success">
+                                       {{ session('success') }}
+                                </div>
+                              </div>
+                            </div>
+                        @endif
+                         @if (session('error'))
+                             <div class="form-group ">
+                              <div class="col-xs-12">
+                                <div class="alert alert-danger">
+                                       {{ session('error') }}
+                                </div>
+                              </div>
+                            </div>
+                        @endif
+
                 <div class="form-group">
                   <input type="hidden" name="user_id" value="{{$agent->id}}"/>
                   <label class="col-sm-2 col-sm-2 control-label">Mot de passe:</label>
                   <div class="col-sm-4">
-                    <input type="password" class="form-control" name="motdepasse" value=""/>
+                    <input type="password" class="form-control" name="motdepasse" id="motdepasse"  value="{{ old('motdepasse') }}" onkeyup="validatePassword(this.value)"/>
                   </div>
-
                   <label class="col-sm-2 col-sm-2 control-label">Confirmer :</label>
                   <div class="col-sm-4">
-                    <input type="password" class="form-control" name="cmotdepasse" value=""/>
+                    <input type="password" class="form-control" name="cmotdepasse" id="cmotdepasse" value="{{ old('cmotdepasse') }}" onkeyup="activeSubmit()"/>
+                    <span style="display: none; color:red" id="pwdrepeat">
+                        <label>Repetez le mot de passe svp !</label>
+                   </span>
                   </div>
 
                 </div>
-<br>
+              <div class="form-group">
+                <span style="display: block; color:red" id="non_majuscule">
+                    <input type="checkbox" style="margin: 10px"><label>Au moins une lettre Majuscule</label>
+                </span>
+                <span style="display: none; color:green" id="majuscule">
+                        <input type="checkbox" checked style="margin: 10px"><label>Au moins une lettre Majuscule</label>
+                </span>
+
+                <span style="display: block; color:red" id="non_chiffre">
+                        <input type="checkbox" style="margin: 10px"><label>Au moins 1 chiffre</label>
+                </span>
+                <span style="display: none; color:green" id="chiffre">
+                        <input type="checkbox" checked style="margin: 10px" ><label>Au moins 1 chiffre</label>
+                </span>
+
+                <span style="display: block; color:red" id="non_longueur">
+                        <input type="checkbox" style="margin: 10px"><label>Au moins 8 carractères</label>
+                </span>
+                <span style="display: none; color:green" id="longueur">
+                        <input type="checkbox" checked style="margin: 10px" ><label>Au moins 8 carractères</label>
+                </span>
+
+              </div>
                 <div class="modal-footer">
                    <!--  <button type="button" class="btn btn-warning" data-dismiss="modal">
                       Fermer
                     </button> -->
 
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success" disabled id="btn_submit">
                       Modifier
                     </button>
                   </div>
@@ -1147,9 +1190,9 @@ $nbrejourrestant=$total - $jourutilise;
                </form>
 
 
-                        
+
                       </div>
-                     
+
                     </div>
                     <!-- /row -->
                   </div>
@@ -1251,7 +1294,7 @@ $nbrejourrestant=$total - $jourutilise;
             </div>
             <!-- /col-lg-12 -->
           </div>
-         
+
           <!-- /row -->
         </div>
         <!-- /container -->
@@ -1266,7 +1309,7 @@ $nbrejourrestant=$total - $jourutilise;
                       <h4 class="modal-title" id="myModalLabel">Modifier photo</h4>
                     </div>
                 <form class="form-horizontal m-t-10 p-20 p-b-0" method="post" enctype="multipart/form-data" action="{{ route('update.photo') }}">
-                   {{ csrf_field() }} 
+                   {{ csrf_field() }}
                     <div class="modal-body">
                              <input type="hidden"  name="user_id" value="{{$agent->id}}">
                         <div class="form-group">
@@ -1302,7 +1345,7 @@ $nbrejourrestant=$total - $jourutilise;
                       <h4 class="modal-title" id="myModalLabel">Ajouter un CV</h4>
                     </div>
                 <form class="form-horizontal m-t-10 p-20 p-b-0" method="post" enctype="multipart/form-data" action="{{ route('add.document') }}">
-                   {{ csrf_field() }} 
+                   {{ csrf_field() }}
                     <div class="modal-body">
                              <input type="hidden"  name="user_id" value="{{$agent->id}}">
                              <input type="hidden"  name="file_type" value="1">
@@ -1336,7 +1379,7 @@ $nbrejourrestant=$total - $jourutilise;
         <p>
           &copy; Copyrights <strong>DRHAJA</strong>. Tous droitd reservés
         </p>
-        
+
         <a href="profile.html#" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
@@ -1367,7 +1410,7 @@ $nbrejourrestant=$total - $jourutilise;
           });
 </script>
   <script>
-     
+
     $('.contact-map').click(function() {
 
       //google map in tab click initialize
@@ -1397,18 +1440,18 @@ $nbrejourrestant=$total - $jourutilise;
               $("#divlabelfin").css("display","block");
               $("#divinputfin").css("display","block");
               $("#gradelabel").css("display","none");
-             
+
             }else if(id == 'FONCTIONNAIRE'){
               $("#divlabelfin").css("display","none");
               $("#divinputfin").css("display","none");
               $("#gradelabel").css("display","block");
-              
-            } else 
+
+            } else
             {
               $("#divlabelfin").css("display","none");
               $("#divinputfin").css("display","none");
               $("#gradelabel").css("display","none");
-              
+
             }
   }
 
@@ -1419,13 +1462,13 @@ $nbrejourrestant=$total - $jourutilise;
               $("#divlabelfin").css("display","block");
               $("#divinputfin").css("display","block");
               $("#gradelabel").css("display","none");
-             
+
             }else if(contrat == 'FONCTIONNAIRE'){
               $("#divlabelfin").css("display","none");
               $("#divinputfin").css("display","none");
               $("#gradelabel").css("display","block");
-              
-            } else 
+
+            } else
             {
               $("#divlabelfin").css("display","none");
               $("#divinputfin").css("display","none");
@@ -1452,7 +1495,7 @@ $nbrejourrestant=$total - $jourutilise;
   {
 
     //alert(id);
-    
+
     var url = "{{ url('ajax/sousdirection/show') }}/"+id;
      $.ajax(
      {
@@ -1460,7 +1503,7 @@ $nbrejourrestant=$total - $jourutilise;
       url: url,
       success: function(data)
       {
-          $('select#sousdirection').html(data.html_first);        
+          $('select#sousdirection').html(data.html_first);
       }
     }
 );
@@ -1471,7 +1514,7 @@ $nbrejourrestant=$total - $jourutilise;
   {
 
     //alert(id);
-    
+
     var url = "{{ url('ajax/service/show') }}/"+id;
      $.ajax(
      {
@@ -1479,11 +1522,40 @@ $nbrejourrestant=$total - $jourutilise;
       url: url,
       success: function(data)
       {
-          $('select#service').html(data.html_first);        
+          $('select#service').html(data.html_first);
       }
     }
 );
   }
+
+
+  function validatePassword(password) {
+
+
+// Au moins une lettre majuscule
+if (!/[A-Z]/.test(password)) { $('#majuscule').css("display","none");$('#non_majuscule').css("display","block");}else{$('#majuscule').css("display","block");$('#non_majuscule').css("display","none");}
+
+// Au moins un chiffre
+if (!/\d/.test(password)) { $('#chiffre').css("display","none");$('#non_chiffre').css("display","block");}else{$('#chiffre').css("display","block");$('#non_chiffre').css("display","none");}
+
+//Minimum 8 caractères
+if (password.length < 8) { $('#longueur').css("display","none");$('#non_longueur').css("display","block");}else{$('#longueur').css("display","block");$('#non_longueur').css("display","none");}
+
+if (!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password)) { $('#password-confirm').attr('disabled','true')}else{ $('#password-confirm').removeAttr('disabled');}
+
+
+}
+
+function activeSubmit() {
+//alert('test');
+var password_confirmation = $('#cmotdepasse').val();
+var password_new = $('#motdepasse').val();
+console.log(password_confirmation);
+console.log(password_new);
+if(password_confirmation == password_new){$('#btn_submit').removeAttr('disabled'); $('#pwdrepeat').css("display","none");}else{$('#pwdrepeat').css("display","block");$('#btn_submit').attr('disabled','true');}
+
+}
+
 
 
   </script>
