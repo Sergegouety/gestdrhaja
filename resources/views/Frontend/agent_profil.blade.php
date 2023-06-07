@@ -1189,8 +1189,6 @@ $nbrejourrestant=$total - $jourutilise;
 
                </form>
 
-
-
                       </div>
 
                     </div>
