@@ -84,7 +84,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                       </div>
                     </div>
             @endif
-         
+
         <!-- row -->
         <div class="row mt">
           <div class="col-md-12">
@@ -93,8 +93,8 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                 <div class="position-relative" align="right" style="padding-right:5px">
 
                   <form method="get" action="{{ route('ptab') }}" >
-                     {{ csrf_field() }} 
-                   
+                     {{ csrf_field() }}
+
                    <div class="form-group">
                     <div class="col-sm-2">
                           <select class="form-control" name="annee" id="annee">
@@ -102,7 +102,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                             <option <?php if($annee == 2023) { echo "selected";} ?> value="2023">2023</option>
                             <option <?php  if($annee == 2022) { echo "selected";} ?> value="2022">2022</option>
                           </select>
-                          
+
                         </div>
                        @if($search_direction)
                         <div class="col-sm-2">
@@ -114,7 +114,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                           </option>
                           @endforeach
                           </select>
-                          
+
                         </div>
                         @endif
                         @if($search_sdirection)
@@ -154,12 +154,12 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu">
-                    <li>@if(Session::get('function_key')->isptabadmin)
+                    {{--  <li>@if(Session::get('function_key')->isptabadmin)
                        <a href="{{route('ptab.import')}}">
                         <i class="fa fa-download"></i> Importer
                        </a>
                        @endif
-                     </li>
+                     </li>  --}}
                       <li><a href="{{route('export.ptab',[$direction_,$sousdirection_])}}">
                              Exporter
                         </a>
@@ -176,8 +176,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                         </div>
 
                     </div >
-                   
-                   
+
                    </form>
                 </div>
                 <br>
@@ -188,10 +187,10 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                 </div>
 
 
-          
+
               </table>
             </div>
-            
+
             <!-- /content-panel -->
           </div>
           <!-- /col-md-12 -->
@@ -200,7 +199,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
         <div class="row mt">
           <div class="col-lg-12">
             <div class="content-panel">
-              
+
               <section id="no-more-tables">
                 <table class="table table-bordered table-striped table-condensed cf">
                   <thead class="cf">
@@ -221,7 +220,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                     <tr>
                       <td >{{$i}}</td>
                       <td >
-                        <?php 
+                        <?php
                         if($action->type_id==1){
                           @$ref = getInstanceName('master_action','id',$action->reference_matrice,'ref');
                           echo $ref;
@@ -230,7 +229,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                           echo $ref;
                         }else{
                           @$ref = getInstanceName('master_tache','id',$action->reference_matrice,'ref');
-                          echo $ref;} 
+                          echo $ref;}
                         ?>
                       </td>
                       <td >{{$action->responsable}}</td>
@@ -253,11 +252,11 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                     <li><a data-toggle="modal" data-target="#arretModal" onclick="actionarreter({{$action->id}},{{$action->type_id}},-1)" href="#">Désactiver</a></li>
                     @endif
 
-                    
+
                     @if($retire && $action->state != -3 && $action->state != -4 && ($level == 5 || Session::get('function_key')->isptabadmin))
                     <li><a data-toggle="modal" data-target="#arretModal" onclick="actionarreter({{$action->id}},{{$action->type_id}},-3)" href="#">Rétirer</a></li>
                     @endif
-                     
+
                      @elseif($action->type_id == 2)
                     <!-- <li><a onclick="actiondedetail('activite',{{$action->id}})" href="#">Voir Détail</a></li> -->
                     <li><a href="{{route('tache.avalider',[$action->id,3])}}" href="#">Valider les taches</a></li>
@@ -270,7 +269,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                     @if($retire && $action->state != -3 && $action->state != -4 && ($level == 3 || Session::get('function_key')->isptabadmin))
                     <li><a data-toggle="modal" data-target="#arretModal" onclick="actionarreter({{$action->id}},{{$action->type_id}},-3)" href="#">Rétirer</a></li>
                     @endif
-                    
+
                      @else
                     <!-- <li><a onclick="actiondedetail('tache',{{$action->id}})" href="#">Voir Détail</a></li> -->
                     <li><a onclick="actiondedetail('tache',{{$action->id}})" href="#">Etat d'avancement</a></li>
@@ -297,12 +296,12 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                     @endif
 
                     @if($retire)
-  
+
                     @if($action->state == -3 && show_confirme($action->id,Auth::id()))
                     <li><a data-toggle="modal" data-target="#arretModal" onclick="actionconfirmarret({{$action->id}},{{$action->type_id}},-4)" href="#">Confirmer retrait</a></li>
                     @endif
                     @endif
-                   
+
                     @if($action->type_id==1)
                     @if($modifierAction)
                     <li><a onclick="actionEdit('action',{{$action->id}})" href="#">Modifier</a></li>
@@ -339,13 +338,13 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                 </div>
                       </td>
                        <td >
-                        <?php if($action->state == -2){ echo '<span class="badge bg-important">DESACTIVEE</span>';} ?> 
-                        <?php if($action->state == -1){ echo '<span class="badge bg-warning">Désactivation en attente</span>';} ?> 
+                        <?php if($action->state == -2){ echo '<span class="badge bg-important">DESACTIVEE</span>';} ?>
+                        <?php if($action->state == -1){ echo '<span class="badge bg-warning">Désactivation en attente</span>';} ?>
                         <?php if($action->state == -3){ echo '<span class="badge bg-warning">Retrait en attente</span>';} ?>
-                        <?php if($action->state == -4){ echo '<span class="badge bg-important">RETIREE</span>';} ?> 
-                         <?php if($action->state == 1){ echo '<span class="badge bg-important">NON REALISEE</span>';} ?> 
-                        <?php if($action->state == 2){ echo '<span class="badge bg-warning">PART. REALISEE</span>';} ?> 
-                        <?php if($action->state == 3){ echo '<span class="badge bg-success">REALISEE</span>';} ?> 
+                        <?php if($action->state == -4){ echo '<span class="badge bg-important">RETIREE</span>';} ?>
+                         <?php if($action->state == 1){ echo '<span class="badge bg-important">NON REALISEE</span>';} ?>
+                        <?php if($action->state == 2){ echo '<span class="badge bg-warning">PART. REALISEE</span>';} ?>
+                        <?php if($action->state == 3){ echo '<span class="badge bg-success">REALISEE</span>';} ?>
                       </td>
                     </tr>
                     @php $i++; @endphp
@@ -371,7 +370,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                     <div class="modal-body">
 
                       <form class="form-horizontal m-t-10 p-20 p-b-0" method="post" action="{{route('add.arret.periode')}}" enctype="multipart/form-data" id="arret_form">
-                           {{ csrf_field() }} 
+                           {{ csrf_field() }}
                            <input type="hidden" name="instance_id" id="instance_id">
                            <input type="hidden" name="type_id" id="type_id">
                            <input type="hidden" name="val" id="val">
@@ -421,11 +420,11 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                         </button>
                       </div>
 
-                  
+
                     </form>
-                      
+
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
@@ -440,7 +439,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
   {
 
     //alert(id);
-    
+
     var url = "{{ url('ajax/sousdirection/show') }}/"+id;
      $.ajax(
      {
@@ -448,8 +447,8 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
       url: url,
       success: function(data)
       {
-          $('select#sousdirection').html(data.html_first);  
-          $('select#agent').html(data.html_two);       
+          $('select#sousdirection').html(data.html_first);
+          $('select#agent').html(data.html_two);
       }
     }
 );
@@ -460,7 +459,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
   {
 
     //alert(id);
-    
+
     var url = "{{ url('ajax/service/show') }}/"+id;
      $.ajax(
      {
@@ -469,7 +468,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
       success: function(data)
       {
           $('select#service').html(data.html_first);
-          $('select#agent').html(data.html_two);        
+          $('select#agent').html(data.html_two);
       }
     }
 );
@@ -480,22 +479,22 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
 
       function actionretrait(action,type_id,value)
     {
-      //alert(action); alert(value); 
+      //alert(action); alert(value);
       if(value == -5){rep = confirm("Voulez-vous supprimer ?");}
       if(value == -3){rep = confirm("Voulez-vous retirer ?");}
       if(value == -4){rep = confirm("Voulez-vous confirmer le retrait ?");}
       if(value == 0){rep = confirm("Voulez-vous activer ?");}
-      
+
       if(rep){
         url = "{{url('/action/supprime')}}/"+action+"/"+type_id+"/"+value;
         window.location.href = url;
       }
-  
+
     }
 
      function actionarreter(action,type_id,value)
     {
-      //alert(action); alert(value); 
+      //alert(action); alert(value);
       if(value == -3){
         rep = confirm("Voulez-vous retirer ?");
 
@@ -509,7 +508,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
         $('#inlineCheckbox4').attr('readonly','true');
     }
       if(value == -1){rep = confirm("Voulez-vous arrêter ?");}
-      
+
       if(rep == true){
         $('#instance_id').val(action);$('#type_id').val(type_id);$('#val').val(value);
       }
@@ -517,10 +516,10 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
 
     function actionconfirmarret(action,type_id,value)
     {
-      //alert(action); alert(value); 
+      //alert(action); alert(value);
        if(value == -4){rep = confirm("Voulez-vous confirmer le retrait ?");}
        if(value == -2){rep = confirm("Voulez-vous confirmer la désactivation ?");}
-      
+
       if(rep == true){
         url = "{{url('ajax/action/archive')}}/"+action+"/"+type_id+"/"+value;
         $.ajax(
@@ -530,10 +529,10 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                   success: function(data)
                   {
                     console.log(data);
-                      if(data.trimestre1){$('#inlineCheckbox1').attr('checked','true');}  
-                      if(data.trimestre2){$('#inlineCheckbox2').attr('checked','true');}  
-                      if(data.trimestre3){$('#inlineCheckbox3').attr('checked','true');}  
-                      if(data.trimestre4){$('#inlineCheckbox4').attr('checked','true');} 
+                      if(data.trimestre1){$('#inlineCheckbox1').attr('checked','true');}
+                      if(data.trimestre2){$('#inlineCheckbox2').attr('checked','true');}
+                      if(data.trimestre3){$('#inlineCheckbox3').attr('checked','true');}
+                      if(data.trimestre4){$('#inlineCheckbox4').attr('checked','true');}
                       $('#commentaire').val(data.commentaire);
                   }
                 }
@@ -558,7 +557,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
 
     function actiondedetail(table,value)
     {
-      
+
       url = "{{url('/ptab/detail')}}/"+table+"/"+value;
 
       window.location.href = url;
@@ -567,7 +566,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
 
      function actionEdit(table,value)
     {
-      
+
       url = "{{url('/ptab/edit')}}/"+table+"/"+value;
 
       window.location.href = url;
@@ -576,7 +575,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
 
     function actiondajout(table,id)
     {
-      
+
       url = "{{url('/ptab/nouveau')}}/"+table+"/"+id;
       //alert(url);
       window.location.href = url;
@@ -602,7 +601,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
       if(accept){
         document.getElementById("form_validateAction").submit();
       }
-      
+
     }
 
     function displayValidateButton(val){
