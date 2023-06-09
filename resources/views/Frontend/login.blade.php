@@ -28,7 +28,7 @@
  /* background-size: cover; /* Resize the background image to cover the entire container */*/
 }
   </style>
-  
+
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -48,7 +48,7 @@
       <span style="font-size: 22px; color:#00a650;"><strong>BIENVENUE SUR L'APPLICATION DE GESTION <br>DE LA DRHAJA DE L'AGENCE EMPLOI JEUNES</strong></span>
     </div> -->
       <form autocomplete="off" class="form-login" method="post" action="{{ route('doLog') }}">
-         {{ csrf_field() }} 
+         {{ csrf_field() }}
         <h2 class="form-login-heading">Connexion</h2>
         @if (session('success'))
              <div class="form-group ">
@@ -78,7 +78,7 @@
           {!! Captcha::img() !!}
          <input type="text" id="captcha" name="captcha" placeholder="Captcha" required>
 
-          
+
           <hr>
           <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> Se connecter</button>
           <hr>
@@ -86,19 +86,19 @@
           <a class="btn btn-warning btn-block" href="{{ route('password.request') }}" style="text-decoration: none; color: white;">
                     <strong>Mot de passe oublié</strong>
                 </a>
-          
+
         </div>
-        
+
         <div style="text-align: center;">
          <img src="{{asset('img/logo_aej.png')}}" class="img-circle" width="120">
          </div>
-  
+
       </form>
-      
+
     </div>
   </div>
 
-  
+
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
@@ -109,7 +109,7 @@
     $.backstretch("img/login.png", {
       speed: 500,
     });
-  
+
   </script>
 </body>
 

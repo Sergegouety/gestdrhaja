@@ -191,4 +191,6 @@ Route::get('ajax/action/archive/{instance}/{type_id}/{state}', 'PtabController@s
 Route::get('ajax/getServiceById/{id}', 'ServiceController@getServiceById')->name('service.byId');
 Route::get('ajax/getSdById/{id}', 'ServiceController@getServiceById')->name('sd.byId');
 
+
+
 });
