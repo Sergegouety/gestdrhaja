@@ -805,15 +805,15 @@ class PtabController extends Controller
                                     $archive_action->state = $val;
                                     $archive_action->save();
           }
-
-             $affected = DB::table('action')->where('id', $action_id)->update(['state'=>$val]);
             if($type_id== 1){ 
-                      $affected = DB::table('action')->where(['action_id' => $action_id,'type_id'=> 2])->update(['state'=> $val]);
-                      $affected = DB::table('action')->where(['action_id' => $action_id,'type_id'=> 3])->update(['state'=> $val]);
-                    }
-
-                    if($type_id == 2){ 
-                      $affected = DB::table('action')->where(['activite_id' => $action_id,'type_id'=> 3])->update(['state'=> $val]);
+                      $affected = DB::table('action')->where('id', $action_id)->update(['state'=>$val]);
+                      $affected = DB::table('activite')->where(['action_id' => $action_id,'type_id'=> 2])->update(['state'=> $val]);
+                      $affected = DB::table('tache')->where(['action_id' => $action_id,'type_id'=> 3])->update(['state'=> $val]);
+                    }elseif($type_id == 2){ 
+                      $affected = DB::table('activite')->where('id', $action_id)->update(['state'=>$val]);
+                      $affected = DB::table('tache')->where(['activite_id' => $action_id,'type_id'=> 3])->update(['state'=> $val]);
+                    }else{
+                      $affected = DB::table('tache')->where('id', $action_id)->update(['state'=>$val]);
                     }
                   
         }

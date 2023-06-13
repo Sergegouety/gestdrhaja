@@ -47,7 +47,7 @@
       <h1 style="font-size: 82px; color: #f8941e;">GEST - DRHAJA</h1>
       <span style="font-size: 22px; color:#00a650;"><strong>BIENVENUE SUR L'APPLICATION DE GESTION <br>DE LA DRHAJA DE L'AGENCE EMPLOI JEUNES</strong></span>
     </div> -->
-      <form autocomplete="off" class="form-login" method="post" action="{{ route('doLog') }}">
+      <form autocomplete="off" class="form-login" method="post" action="{{ route('doLog') }}" id="myForm">
          {{ csrf_field() }}
         <h2 class="form-login-heading">Connexion</h2>
         @if (session('success'))
@@ -80,7 +80,8 @@
 
 
           <hr>
-          <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> Se connecter</button>
+          <!-- <button type="button" onclick="refreshForm()">Rafraîchir</button> -->
+          <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Se connecter</button>
           <hr>
 
           <a class="btn btn-warning btn-block" href="{{ route('password.request') }}" style="text-decoration: none; color: white;">
@@ -109,6 +110,14 @@
     $.backstretch("img/login.png", {
       speed: 500,
     });
+
+    function refreshForm() {
+  var form = document.getElementById('myForm');
+  form.reset();
+  // var captchaImage = document.getElementById('captchaImage');
+  // captchaImage.src = '{!! Captcha::img() !!}';
+}
+
 
   </script>
 </body>

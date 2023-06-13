@@ -438,7 +438,7 @@ function changeLivrable(id,opt,trim){
                 }
               );
 
-             $('#instance_id').val(action);$('#type_id').val(type_id);;$('#val').val(value)
+             $('#instance_id').val(action); $('#type_id').val(type_id); $('#val').val(value)
       }
     }
 
