@@ -91,7 +91,7 @@ $isptabHelper= get_ptab_helper(auth()->user()->id);
                    
                    <label class="col-sm-2 col-sm-2 control-label" style="padding-top: 10px;">Intitulé Activité:</label>
                     <div class="col-sm-10" style="padding-top: 10px;">
-                      <textarea class="form-control" rows="3" readonly >{{@$master_activites->ref}} : {{getInstanceName('action','id',$ptab->activite_id,'intitule')}}</textarea>
+                      <textarea class="form-control" rows="3" readonly >{{@$master_activites->ref}} : {{@getInstanceName('activite','id',$ptab->activite_id,'intitule')}}</textarea>
                     </div>
 
                     <label class="col-sm-2 col-sm-2 control-label" style="padding-top: 10px;">Indicateur Activité :</label>
