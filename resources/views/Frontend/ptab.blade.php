@@ -303,7 +303,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                     @endif
 
                     @if($action->type_id==1)
-                    @if($modifierAction)
+                    @if($modifierAction && $action->user_id != Auth::id())
                     <li><a onclick="actionEdit('action',{{$action->id}})" href="#">Modifier</a></li>
                     @endif
                     @if($ajout)
@@ -315,7 +315,7 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                       @endif
                       @endif
                       @if($action->type_id==2)
-                      @if($modifierActivity)
+                      @if($modifierActivity && $action->user_id != Auth::id())
                       <li><a onclick="actionEdit('activite',{{$action->id}})" href="#">Modifier</a></li>
                       @endif
                       @if($ajout)
@@ -327,12 +327,14 @@ if($modif && ($level==2 || $isptabadmin || $iscipac==2)){ $modifierTache = 1 ;}e
                       @endif
                       @endif
                       @if($modifierTache)
-                      @if($action->type_id==3)
+                      @if($action->type_id==3 && $action->user_id != Auth::id())
                       <li><a onclick="actionEdit('tache',{{$action->id}})" href="#">Modifier</a></li>
                       @endif
                       @endif
-                      @if($supprime)
+                      @if($supprime && $action->user_id != Auth::id())
+                        
                        <li><a onclick="actionretrait({{$action->id}},{{$action->type_id}},-5)" href="#">Supprimer</a></li>
+                        
                        @endif
                   </ul>
                 </div>
