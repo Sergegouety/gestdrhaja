@@ -634,9 +634,9 @@ $nbrejourrestant=$total - $jourutilise;
                   <div class="col-sm-4">
                     <input type="text" class="form-control" name="email" placeholder="Personnel" value="{{$agent->email}}" required=""/>
                   </div>
-                   <label class="col-sm-2 col-sm-2 control-label"> Email Professionnel <span style="color:red">*</span>:</label>
+                   <label class="col-sm-2 col-sm-2 control-label"> Email Professionnel :</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="email_pro" value="{{$agent->email_pro}}" placeholder="Professionnel" required=""/>
+                    <input type="text" class="form-control" name="email_pro" value="{{$agent->email_pro}}" placeholder="Professionnel"/>
                   </div>
                 </div>
 <br>
