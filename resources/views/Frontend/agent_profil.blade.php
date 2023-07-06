@@ -726,8 +726,8 @@ $nbrejourrestant=$total - $jourutilise;
                   <div class="col-sm-6">
                     <select  class="form-control js-example-basic-single" name="poste" required="" <?php if(Auth::user()->state==1 || $direction_ ==4){ echo ''; }else{echo 'disabled';} ?>>
                       <option value=""></option>
-                        @foreach($postes as $poste)
-                         <option <?php if($agent->fonction==$poste->name){ echo 'selected'; } ?> value="{{$poste->name}}">{{$poste->name}}</option>
+                        @foreach($fonctions as $fonction)
+                         <option <?php if($agent->fonction==$fonction->fonction){ echo 'selected'; } ?> value="{{$fonction->fonction}}">{{$fonction->fonction}}</option>
                          @endforeach
                       </select>
                   </div>

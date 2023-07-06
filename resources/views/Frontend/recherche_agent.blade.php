@@ -154,7 +154,7 @@ $nomprenoms=$ob_param['nomprenoms'] ?? '';
                 <br><br><br>
                 <div class="form-group">
 
-                      <label class="col-sm-2 control-label">Fonction:</label>
+                      <label class="col-sm-2 control-label">Fonction:</label> 
                       <div class="col-sm-4">
                         <select class="form-control js-example-basic-multiple " name="fonction[]" multiple>
                           <option value=""></option>
